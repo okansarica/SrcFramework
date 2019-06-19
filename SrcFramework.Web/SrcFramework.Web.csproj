@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Middlewares\VersionCheckerMiddleware\BaseViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\SafeTube\SafeTube.BusinessLayer\SafeTube.BusinessLayer.csproj" />
+    <ProjectReference Include="..\..\SafeTube\SafeTube.Entities\SafeTube.Entities.csproj" />
+    <ProjectReference Include="..\SrcFramework.Exception\SrcFramework.Exception.csproj" />
+    <ProjectReference Include="..\SrcFramework.Web.ViewModel\SrcFramework.Web.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>
