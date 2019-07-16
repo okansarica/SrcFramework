@@ -7,6 +7,8 @@ using System.Security.Claims;
 
 namespace SrcFramework.Web.Controllers
 {
+    [Route("[controller]")]
+    [ApiController]
     public class BaseController : Controller
     {
         public IActionResult ValidationFailedResult => StatusCode(StatusCodes.Status500InternalServerError, "Validation failed");
