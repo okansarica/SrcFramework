@@ -4,6 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
     <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
+    <Authors>Srcsoft</Authors>
+    <Product>SrcFramework</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,10 +22,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="SrcFramework.Core" Version="1.0.0" />
     <PackageReference Include="SrcFramework.Security" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SrcFramework.Web.ViewModel\SrcFramework.Web.ViewModel.csproj" />
+    <PackageReference Include="SrcFramework.Web.ViewModel" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
