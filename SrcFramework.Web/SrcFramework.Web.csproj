@@ -1,24 +1,40 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RunAnalyzersDuringBuild>false</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>false</RunAnalyzersDuringLiveAnalysis>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Middlewares\VersionCheckerMiddleware\BaseViewModel.cs" />
+    <Compile Remove="Extensions\**" />
+    <Compile Remove="Middlewares\ExceptionModdleware\ExceptionMiddleware.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="SrcFramework.Core" Version="1.0.0" />
+    <PackageReference Include="SrcFramework.Security" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SafeTube\SafeTube.BusinessLayer\SafeTube.BusinessLayer.csproj" />
-    <ProjectReference Include="..\..\SafeTube\SafeTube.Entities\SafeTube.Entities.csproj" />
-    <ProjectReference Include="..\SrcFramework.Exception\SrcFramework.Exception.csproj" />
     <ProjectReference Include="..\SrcFramework.Web.ViewModel\SrcFramework.Web.ViewModel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Extensions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middlewares\ExceptionModdleware" />
   </ItemGroup>
 
 </Project>

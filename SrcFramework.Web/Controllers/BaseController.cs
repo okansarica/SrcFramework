@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SrcFramework.Web.ViewModel;
 using System;
 using System.Linq;
 using System.Security.Claims;
 
 namespace SrcFramework.Web.Controllers
 {
-    [Route("[controller]")]
-    [ApiController]
+    [Produces("application/json")]
+    [Route("api/[controller]/[action]")]
     public class BaseController : Controller
     {
         public IActionResult ValidationFailedResult => StatusCode(StatusCodes.Status500InternalServerError, "Validation failed");
-        public IActionResult EmptySuccessResult => Ok(new BaseViewModel());
         public int? UserId
         {
             get

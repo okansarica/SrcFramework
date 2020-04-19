@@ -1,7 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Company>Srcsoft</Company>
+    <Product>SrcFramework</Product>
+    <Authors>Srcsoft</Authors>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Description>SrcFramework</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/okansarica/SrcFramework</RepositoryUrl>
+    <PackageTags>SrcFramework</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
 </Project>

@@ -1,7 +1,11 @@
-﻿namespace SrcFramework.Core.Model
+﻿using System;
+
+namespace SrcFramework.Core.Model
 {
-    public interface IEntity
+    public class BaseEntity
     {
-        int Id { get; set; }
+        public int Id { get; set; }
+        public DateTime LastModificationDate { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

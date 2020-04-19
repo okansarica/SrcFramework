@@ -53,7 +53,7 @@ namespace SrcFramework.Utils
 
         public static IEnumerable<IEnumerable<T>> Permute<T>(IEnumerable<T> items, int count)
         {
-            int i = 0;
+            var i = 0;
             foreach (var item in items)
             {
                 if (count == 1)

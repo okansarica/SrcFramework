@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using SrcFramework.Web.ViewModel;
 
 namespace SrcFramework.Web.Middlewares.VersionCheckerMiddleware
 {
@@ -43,16 +42,17 @@ namespace SrcFramework.Web.Middlewares.VersionCheckerMiddleware
             }
             else
             {
-                context.Response.ContentType = "application/json";
-                await context.Response.WriteAsync(JsonConvert.SerializeObject(new BaseViewModel
-                {
-                    IsSuccessfull = false,
-                    Message = _options.ErrorMessage,
-                    IsBusinessException = false
-                }, new JsonSerializerSettings
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                }));
+                //TODO
+//                context.Response.ContentType = "application/json";
+//                await context.Response.WriteAsync(JsonConvert.SerializeObject(new BaseViewModel
+//                {
+//                    IsSuccessfull = false,
+//                    Message = _options.ErrorMessage,
+//                    IsBusinessException = false
+//                }, new JsonSerializerSettings
+//                {
+//                    ContractResolver = new CamelCasePropertyNamesContractResolver()
+//                }));
             }
         }
     }

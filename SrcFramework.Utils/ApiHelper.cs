@@ -4,7 +4,7 @@ using System.Net;
 
 namespace SrcFramework.Utils
 {
-    public class ApiHelper
+    public static class ApiHelper
     {
         public static string MakeACall(string url,string contentType= "text/json",string method ="GET",string dataToPost=null)
         {
@@ -35,11 +35,10 @@ namespace SrcFramework.Utils
             {
                 throw  new Exception("responseStream is null");
             }
-            using (var streamReader = new StreamReader(responseStream))
-            {
-                var responseText = streamReader.ReadToEnd();
-                return responseText;
-            }
+
+            using var streamReader = new StreamReader(responseStream);
+            var responseText = streamReader.ReadToEnd();
+            return responseText;
         }
     }
 }

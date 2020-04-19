@@ -22,7 +22,6 @@ namespace SrcFramework.Utils
             {
                 File.WriteAllText(fullFileName, content);
             }
-            
         }
 
 

@@ -10,7 +10,7 @@ namespace System
             return value.ToString("dd.MM.yyyy");
         }
 
-        public static string ToTurhish24Time(this DateTime value)
+        public static string ToTurkish24Time(this DateTime value)
         {
             return value.ToString("HH:mm", new CultureInfo("tr-tr"));
         }

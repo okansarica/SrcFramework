@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using SrcFramework.Core.Data.EntityFramework.Abstract;
 using SrcFramework.Core.Model;
@@ -17,7 +18,7 @@ namespace SrcFramework.Core.Data.EntityFramework.Concrete
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IEntity, new()
+        public IRepository<TEntity> Repository<TEntity>() where TEntity :  BaseEntity
         {
             if (_repositories == null)
             {
@@ -77,6 +78,11 @@ namespace SrcFramework.Core.Data.EntityFramework.Concrete
                     _context = null;
                 }
             }
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return _context.SaveChangesAsync();
         }
     }
 

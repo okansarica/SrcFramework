@@ -5,7 +5,7 @@ using SrcFramework.Core.Model;
 namespace SrcFramework.Core.Data.EntityFramework.Mapping
 {
     //core 2.0
-    public class BaseEntityMap<T> : IEntityTypeConfiguration<T> where T : class, IEntity
+    public class BaseEntityMap<T> : IEntityTypeConfiguration<T> where T : BaseEntity
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {

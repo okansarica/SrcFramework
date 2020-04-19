@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+// ReSharper disable CheckNamespace
 
 namespace System
 {
@@ -20,12 +21,13 @@ namespace System
             {
                 list.Add(Convert.ToInt32(textList[i]));
             }
+
             return list;
         }
 
         public static string ToUpperTurkish(this string text)
         {
-            if (text==null)
+            if (text == null)
             {
                 return null;
             }
@@ -38,25 +40,26 @@ namespace System
             return Convert.ToDateTime(text, new CultureInfo("tr-tr"));
         }
 
-        public static string ShortenFirstWord(this string text,int length)
+        public static string ShortenFirstWord(this string text, int length)
         {
-            if (text==null)
+            if (text == null)
             {
                 return null;
             }
-            if (text.Length<length)
+
+            if (text.Length < length)
             {
                 return text;
             }
 
             string[] texts = text.Trim().Split(' ');
-            StringBuilder builder =new StringBuilder();
+            StringBuilder builder = new StringBuilder();
 
             for (int i = 0; i < texts.Length; i++)
             {
-                if (i==0)
+                if (i == 0)
                 {
-                    if (texts[i].Length>0)
+                    if (texts[i].Length > 0)
                     {
                         builder.Append(texts[i].Substring(0, 1));
                         builder.Append(". ");
@@ -72,17 +75,56 @@ namespace System
                     builder.Append(" ");
                 }
             }
-            return builder.ToString().Trim();
 
+            return builder.ToString().Trim();
         }
 
         public static bool In(this string text, params string[] values)
         {
-            if (values==null || values.Length<=0)
+            if (values == null || values.Length <= 0)
             {
                 return false;
             }
+
             return values.ToList().Contains(text);
+        }
+
+        public static string RemoveSpecialCharacters(this string text, bool removeSpaces = true, bool addDashForSpaces = false)
+        {
+            var result = text;
+            if (removeSpaces)
+            {
+                if (addDashForSpaces)
+                {
+                    result = result.Replace(" ", "-");
+                }
+                else
+                {
+                    result = result.Replace(" ", "");
+                }
+            }
+
+            result = result.Replace("/", "");
+            result = result.Replace("!", "");
+            result = result.Replace("@", "");
+            result = result.Replace("#", "");
+            result = result.Replace("\\", "");
+            result = result.Replace("<", "");
+            result = result.Replace(">", "");
+            result = result.Replace("$", "");
+            result = result.Replace("&", "");
+            result = result.Replace("(", "");
+            result = result.Replace(")", "");
+            result = result.Replace("+", "");
+            result = result.Replace("-", "");
+            result = result.Replace("'", "");
+            result = result.Replace("?", "");
+            result = result.Replace(".", "");
+            result = result.Replace(",", "");
+            result = result.Replace(";", "");
+            result = result.Replace("_", "");
+//TODO ascii characterine gore yap
+            return result;
         }
     }
 }
