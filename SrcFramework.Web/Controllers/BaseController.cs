@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using SrcFramework.Core.Model;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace SrcFramework.Web.Controllers
 {
@@ -11,16 +12,17 @@ namespace SrcFramework.Web.Controllers
     public class BaseController : Controller
     {
         public IActionResult ValidationFailedResult => StatusCode(StatusCodes.Status500InternalServerError, "Validation failed");
-        public int? UserId
+        public BaseUser LoggedUser
         {
             get
             {
+            
                 var claim = ((ClaimsIdentity)User.Identity).Claims.SingleOrDefault(p => p.Type == ClaimTypes.NameIdentifier);
                 if (claim==null)
                 {
                     return null;
                 }
-                return Convert.ToInt32(claim.Value);
+               return JsonSerializer.Deserialize<BaseUser>(claim.Value);                
             }
         }
     }

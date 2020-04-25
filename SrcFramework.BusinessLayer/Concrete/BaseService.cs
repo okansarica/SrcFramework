@@ -17,6 +17,7 @@ namespace SrcFramework.Core.BusinessLayer.Concrete
 
         protected BaseService(IServiceProvider provider)
         {
+            UnitOfWork = (IUnitOfWork<TContext>)provider.GetService(typeof(IUnitOfWork<TContext>));
         }
 
         public virtual void Insert(TModel model)

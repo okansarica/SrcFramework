@@ -7,6 +7,7 @@
     <Authors>Srcsoft</Authors>
     <Product>SrcFramework</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="SrcFramework.Core" Version="1.0.0" />
+    <PackageReference Include="SrcFramework.Core" Version="1.0.2" />
     <PackageReference Include="SrcFramework.Security" Version="1.0.0" />
     <PackageReference Include="SrcFramework.Web.ViewModel" Version="1.0.0" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿
+
+using System.Text.Json;
 
 namespace SrcFramework.Utils
 {
@@ -16,7 +18,7 @@ namespace SrcFramework.Utils
             try
             {
                 string textResult = ApiHelper.MakeACall(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", parameters.secret, parameters.response));
-                ReCaptchaResponse reCaptchaCallResponse = JsonConvert.DeserializeObject<ReCaptchaResponse>(textResult);
+                ReCaptchaResponse reCaptchaCallResponse = JsonSerializer.Deserialize<ReCaptchaResponse>(textResult);
                 if (reCaptchaCallResponse.success != "true")
                 {
                     return false;
