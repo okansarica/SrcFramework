@@ -18,8 +18,6 @@ namespace SrcFramework.Utils
 
         public static bool Verify(string password, string hashedPassword)
         {
-            //TODO
-            return true;
             return Hash(password) == hashedPassword;
         }
     }

@@ -5,7 +5,8 @@ namespace SrcFramework.Utils
 {
     public static class DataHelper
     {
-        private static readonly char[] Punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
+        //private static readonly char[] Punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
+        private static readonly char[] Punctuations = "!@#$%&*_-+=|/?".ToCharArray();
 
         public static string GenerateRandomPassword(int length=8, int numberOfNonAlphanumericCharacters=3)
         {

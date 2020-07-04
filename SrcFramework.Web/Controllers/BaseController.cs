@@ -22,7 +22,8 @@ namespace SrcFramework.Web.Controllers
                 {
                     return null;
                 }
-               return JsonSerializer.Deserialize<BaseUser>(claim.Value);                
+                var options = new JsonSerializerOptions() { PropertyNameCaseInsensitive = true }
+               return JsonSerializer.Deserialize<BaseUser>(claim.Value,options);                
             }
         }
     }
