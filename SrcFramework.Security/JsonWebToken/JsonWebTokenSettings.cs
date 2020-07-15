@@ -1,23 +1,36 @@
 using System;
+using System.Resources;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
 namespace SrcFramework.Security.JsonWebToken
 {
-	public static class JsonWebTokenSettings
+	public  class JsonWebTokenSettings
 	{
-		private static SecurityKey _securityKey;
+		private  static SecurityKey _securityKey;
 
-		public static string Audience => nameof(Audience);
+		public  string Audience => nameof(Audience);
 
-		public static DateTime Expires => DateTime.UtcNow.AddDays(2);
+        private  DateTime? _expires;
+		public  DateTime Expires
+        {
+            get
+            {
+                if (_expires.HasValue)
+                {
+                    return _expires.Value;
+                }
+                return DateTime.UtcNow.AddDays(2);
+            }
+            set => _expires = value;
+        }
 
-		public static string Issuer => nameof(Issuer);
+        public  string Issuer => nameof(Issuer);
 
 	    public static string Key => "EWv6krMhbZGsjmY9aClf"; //=> Guid.NewGuid() + DateTime.UtcNow.ToString(CultureInfo.InvariantCulture);
 
-		public static SecurityKey SecurityKey => _securityKey ??= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key));
+		public static  SecurityKey SecurityKey => _securityKey ??= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key));
 
-		public static SigningCredentials SigningCredentials => new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha512);
+		public  SigningCredentials SigningCredentials => new SigningCredentials(SecurityKey, SecurityAlgorithms.HmacSha512);
 	}
 }

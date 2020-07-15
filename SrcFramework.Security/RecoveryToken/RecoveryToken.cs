@@ -40,31 +40,33 @@ namespace SrcFramework.Security.RecoveryToken
 
         private SecurityTokenDescriptor GetSecurityTokenDescriptor(DateTime notBefore, DateTime expires)
         {
-            return new SecurityTokenDescriptor
-            {
-                Audience = AUDIENCE,
-                IssuedAt = notBefore,
-                NotBefore = notBefore,
-                Expires = expires,
-                Issuer = ISSUER,
-                SigningCredentials = JsonWebTokenSettings.SigningCredentials
-            };
+            throw new NotImplementedException();
+            //return new SecurityTokenDescriptor
+            //{
+            //    Audience = AUDIENCE,
+            //    IssuedAt = notBefore,
+            //    NotBefore = notBefore,
+            //    Expires = expires,
+            //    Issuer = ISSUER,
+            //    SigningCredentials = JsonWebTokenSettings.SigningCredentials
+            //};
         }
 
         private TokenValidationParameters GetTokenValidationParameters()
         {
-            return new TokenValidationParameters
-            {
-                RequireExpirationTime = true,
-                ValidateLifetime = true,
-                ValidateIssuer = true,
-                ValidIssuer = ISSUER,
-                ValidateAudience = true,
-                ValidAudience = AUDIENCE,
-                RequireSignedTokens = true,
-                IssuerSigningKey = JsonWebTokenSettings.SecurityKey,
-                ValidateIssuerSigningKey = true
-            };
+            throw new NotImplementedException();
+            //return new TokenValidationParameters
+            //{
+            //    RequireExpirationTime = true,
+            //    ValidateLifetime = true,
+            //    ValidateIssuer = true,
+            //    ValidIssuer = ISSUER,
+            //    ValidateAudience = true,
+            //    ValidAudience = AUDIENCE,
+            //    RequireSignedTokens = true,
+            //    IssuerSigningKey = JsonWebTokenSettings.SecurityKey,
+            //    ValidateIssuerSigningKey = true
+            //};
         }
     }
 }

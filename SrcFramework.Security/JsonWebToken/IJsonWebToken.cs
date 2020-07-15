@@ -6,12 +6,12 @@ namespace SrcFramework.Security.JsonWebToken
 {
 	public interface IJsonWebToken
 	{
-		TokenValidationParameters TokenValidationParameters { get; }
+		//TokenValidationParameters TokenValidationParameters { get; }
 		
 		//TODO kullanilmiyor ama development icin gerekebilir
 	    bool IsDevelopment { get; set; }
 
-	    JwtSecurityToken BuildToken(string sub, string[] roles=null);
+	    JwtSecurityToken BuildToken(string sub, JsonWebTokenSettings jsonWebTokenSettings, string[] roles=null);
 
 	    Dictionary<string, object> Decode(string token);
 

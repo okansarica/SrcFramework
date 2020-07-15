@@ -10,17 +10,17 @@ namespace SrcFramework.Security.JsonWebToken
     {
         public bool IsDevelopment { get; set; }
 
-        public TokenValidationParameters TokenValidationParameters =>
-            new TokenValidationParameters
-            {
-                IssuerSigningKey = JsonWebTokenSettings.SecurityKey,
-                ValidateActor = true,
-                ValidateAudience = true,
-                ValidateIssuerSigningKey = true,
-                ValidateLifetime = true,
-                ValidAudience = JsonWebTokenSettings.Audience,
-                ValidIssuer = JsonWebTokenSettings.Issuer
-            };
+        //public TokenValidationParameters TokenValidationParameters =>
+        //    new TokenValidationParameters
+        //    {
+        //        IssuerSigningKey = JsonWebTokenSettings.SecurityKey,
+        //        ValidateActor = true,
+        //        ValidateAudience = true,
+        //        ValidateIssuerSigningKey = true,
+        //        ValidateLifetime = true,
+        //        ValidAudience = JsonWebTokenSettings.Audience,
+        //        ValidIssuer = JsonWebTokenSettings.Issuer
+        //    };
 
         public Dictionary<string, object> Decode(string token)
         {
@@ -33,7 +33,7 @@ namespace SrcFramework.Security.JsonWebToken
             return new JwtSecurityTokenHandler().ReadJwtToken(token);
         }
 
-        public JwtSecurityToken BuildToken(string sub, string[] roles=null)
+        public JwtSecurityToken BuildToken(string sub, JsonWebTokenSettings jsonWebTokenSettings, string[] roles=null)
         {
             var claims = new List<Claim>();
             claims.AddJti();
@@ -43,7 +43,7 @@ namespace SrcFramework.Security.JsonWebToken
                 claims.AddRoles(roles);
             }
 
-            return GetJwtSecurityToken(claims);
+            return GetJwtSecurityToken(claims,jsonWebTokenSettings);
         }
 
         public string Encode(JwtSecurityToken token)
@@ -51,15 +51,15 @@ namespace SrcFramework.Security.JsonWebToken
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        private static JwtSecurityToken GetJwtSecurityToken(IEnumerable<Claim> claims)
+        private static JwtSecurityToken GetJwtSecurityToken(IEnumerable<Claim> claims, JsonWebTokenSettings jsonWebTokenSettings)
         {
             return new JwtSecurityToken(
-                JsonWebTokenSettings.Issuer,
-                JsonWebTokenSettings.Audience,
+                jsonWebTokenSettings.Issuer,
+                jsonWebTokenSettings.Audience,
                 claims,
                 DateTime.UtcNow,
-                JsonWebTokenSettings.Expires,
-                JsonWebTokenSettings.SigningCredentials
+                jsonWebTokenSettings.Expires,
+                jsonWebTokenSettings.SigningCredentials
             );
         }
     }
