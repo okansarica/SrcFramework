@@ -5,7 +5,7 @@
     <Authors>Srcsoft</Authors>
     <Product>SrcFramework</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Version>1.0.6</Version>
+    <Version>1.0.7</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>

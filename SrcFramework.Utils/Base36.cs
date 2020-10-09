@@ -9,95 +9,95 @@ namespace SrcFramework.Utils
     /// Class representing a Base36 number
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Language", "CSE0003:Use expression-bodied members", Justification = "<Pending>")]
-    internal struct Base36
+    internal struct Base36Converter
     {
         #region Constants (and pseudo-constants)
 
         /// <summary>
         /// Base36 containing the maximum supported value for this type
         /// </summary>
-        public static readonly Base36 MaxValue = new Base36(long.MaxValue);
+        //public static readonly Base36Converter MaxValue = new Base36Converter(long.MaxValue);
 
         /// <summary>
         /// Base36 containing the minimum supported value for this type
         /// </summary>
-        public static readonly Base36 MinValue = new Base36(long.MinValue + 1);
+        //public static readonly Base36Converter MinValue = new Base36Converter(long.MinValue + 1);
 
         #endregion
 
-        #region Fields
+        //#region Fields
 
-        private long _numericValue;
+        ///private long _numericValue;
 
-        #endregion
+        //#endregion
 
-        #region Constructor
+        //#region Constructor
 
         /// <summary>
         /// Instantiate a Base36 number from a long value
         /// </summary>
         /// <param name="numericValue">The long value to give to the Base36 number</param>
-        public Base36(long numericValue)
-        {
-            _numericValue = 0; //required by the struct.
-            this.NumericValue = numericValue;
-        }
+        //public Base36Converter(long numericValue)
+        //{
+        //    _numericValue = 0; //required by the struct.
+        //    this.NumericValue = numericValue;
+        //}
 
 
         /// <summary>
         /// Instantiate a Base36 number from a Base36 string
         /// </summary>
         /// <param name="value">The value to give to the Base36 number</param>
-        public Base36(string value)
-        {
-            _numericValue = 0; //required by the struct.
-            this.Value = value;
-        }
+        //public Base36Converter(string value)
+        //{
+        //    _numericValue = 0; //required by the struct.
+        //    this.Value = value;
+        //}
 
-        #endregion
+        //#endregion
 
-        #region Properties
+        //#region Properties
 
         /// <summary>
         /// Get or set the value of the type using a base-10 long integer
         /// </summary>
-        public long NumericValue
-        {
-            get { return _numericValue; }
-            set
-            {
-                //Make sure value is between allowed ranges
-                if (value <= long.MinValue || value > long.MaxValue)
-                {
-                    throw new InvalidBase36ValueException(value);
-                }
+        //public long NumericValue
+        //{
+        //    get { return _numericValue; }
+        //    set
+        //    {
+        //        //Make sure value is between allowed ranges
+        //        if (value <= long.MinValue || value > long.MaxValue)
+        //        {
+        //            throw new InvalidBase36ValueException(value);
+        //        }
 
-                _numericValue = value;
-            }
-        }
+        //        _numericValue = value;
+        //    }
+        //}
 
 
         /// <summary>
         /// Get or set the value of the type using a Base36 string
         /// </summary>
-        public string Value
-        {
-            get { return NumberToBase36(_numericValue); }
-            set
-            {
-                try
-                {
-                    _numericValue = Base36ToNumber(value);
-                }
-                catch
-                {
-                    //Catch potential errors
-                    throw new InvalidBase36NumberException(value);
-                }
-            }
-        }
+        //public string Value
+        //{
+        //    get { return NumberToBase36(_numericValue); }
+        //    set
+        //    {
+        //        try
+        //        {
+        //            _numericValue = Base36ToNumber(value);
+        //        }
+        //        catch
+        //        {
+        //            //Catch potential errors
+        //            throw new InvalidBase36NumberException(value);
+        //        }
+        //    }
+        //}
 
-        #endregion
+        //#endregion
 
         #region Public Static Methods
 
@@ -237,309 +237,309 @@ namespace SrcFramework.Utils
 
         #endregion
 
-        #region Operator Overloads
+        //#region Operator Overloads
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="lhs"></param>
-        /// <param name="rhs"></param>
-        /// <returns></returns>
-        public static bool operator >(Base36 lhs, Base36 rhs)
-        {
-            return lhs._numericValue > rhs._numericValue;
-        }
-
-
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static bool operator <(Base36 LHS, Base36 RHS)
-        {
-            return LHS._numericValue < RHS._numericValue;
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="lhs"></param>
+        ///// <param name="rhs"></param>
+        ///// <returns></returns>
+        //public static bool operator >(Base36 lhs, Base36 rhs)
+        //{
+        //    return lhs._numericValue > rhs._numericValue;
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static bool operator >=(Base36 LHS, Base36 RHS)
-        {
-            return LHS._numericValue >= RHS._numericValue;
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static bool operator <(Base36 LHS, Base36 RHS)
+        //{
+        //    return LHS._numericValue < RHS._numericValue;
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static bool operator <=(Base36 LHS, Base36 RHS)
-        {
-            return LHS._numericValue <= RHS._numericValue;
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static bool operator >=(Base36 LHS, Base36 RHS)
+        //{
+        //    return LHS._numericValue >= RHS._numericValue;
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static bool operator ==(Base36 LHS, Base36 RHS)
-        {
-            return LHS._numericValue == RHS._numericValue;
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static bool operator <=(Base36 LHS, Base36 RHS)
+        //{
+        //    return LHS._numericValue <= RHS._numericValue;
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static bool operator !=(Base36 LHS, Base36 RHS)
-        {
-            return !(LHS == RHS);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static bool operator ==(Base36 LHS, Base36 RHS)
+        //{
+        //    return LHS._numericValue == RHS._numericValue;
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static Base36 operator +(Base36 LHS, Base36 RHS)
-        {
-            return new Base36(LHS._numericValue + RHS._numericValue);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static bool operator !=(Base36 LHS, Base36 RHS)
+        //{
+        //    return !(LHS == RHS);
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static Base36 operator -(Base36 LHS, Base36 RHS)
-        {
-            return new Base36(LHS._numericValue - RHS._numericValue);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static Base36 operator +(Base36 LHS, Base36 RHS)
+        //{
+        //    return new Base36(LHS._numericValue + RHS._numericValue);
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <returns></returns>
-        public static Base36 operator ++(Base36 Value)
-        {
-            return new Base36(Value._numericValue++);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static Base36 operator -(Base36 LHS, Base36 RHS)
+        //{
+        //    return new Base36(LHS._numericValue - RHS._numericValue);
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="Value"></param>
-        /// <returns></returns>
-        public static Base36 operator --(Base36 Value)
-        {
-            return new Base36(Value._numericValue--);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="Value"></param>
+        ///// <returns></returns>
+        //public static Base36 operator ++(Base36 Value)
+        //{
+        //    return new Base36(Value._numericValue++);
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static Base36 operator *(Base36 LHS, Base36 RHS)
-        {
-            return new Base36(LHS._numericValue * RHS._numericValue);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="Value"></param>
+        ///// <returns></returns>
+        //public static Base36 operator --(Base36 Value)
+        //{
+        //    return new Base36(Value._numericValue--);
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static Base36 operator /(Base36 LHS, Base36 RHS)
-        {
-            return new Base36(LHS._numericValue / RHS._numericValue);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static Base36 operator *(Base36 LHS, Base36 RHS)
+        //{
+        //    return new Base36(LHS._numericValue * RHS._numericValue);
+        //}
 
 
-        /// <summary>
-        /// Operator overload
-        /// </summary>
-        /// <param name="LHS"></param>
-        /// <param name="RHS"></param>
-        /// <returns></returns>
-        public static Base36 operator %(Base36 LHS, Base36 RHS)
-        {
-            return new Base36(LHS._numericValue % RHS._numericValue);
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static Base36 operator /(Base36 LHS, Base36 RHS)
+        //{
+        //    return new Base36(LHS._numericValue / RHS._numericValue);
+        //}
 
 
-        /// <summary>
-        /// Converts type Base36 to a base-10 long
-        /// </summary>
-        /// <param name="Value">The Base36 object</param>
-        /// <returns>The base-10 long integer</returns>
-        public static implicit operator long(Base36 Value)
-        {
-            return Value._numericValue;
-        }
+        ///// <summary>
+        ///// Operator overload
+        ///// </summary>
+        ///// <param name="LHS"></param>
+        ///// <param name="RHS"></param>
+        ///// <returns></returns>
+        //public static Base36 operator %(Base36 LHS, Base36 RHS)
+        //{
+        //    return new Base36(LHS._numericValue % RHS._numericValue);
+        //}
 
 
-        /// <summary>
-        /// Converts type Base36 to a base-10 integer
-        /// </summary>
-        /// <param name="Value">The Base36 object</param>
-        /// <returns>The base-10 integer</returns>
-        public static implicit operator int(Base36 Value)
-        {
-            try
-            {
-                return (int)Value._numericValue;
-            }
-            catch
-            {
-                throw new OverflowException("Overflow: Value too large to return as an integer");
-            }
-        }
+        ///// <summary>
+        ///// Converts type Base36 to a base-10 long
+        ///// </summary>
+        ///// <param name="Value">The Base36 object</param>
+        ///// <returns>The base-10 long integer</returns>
+        //public static implicit operator long(Base36 Value)
+        //{
+        //    return Value._numericValue;
+        //}
 
 
-        /// <summary>
-        /// Converts type Base36 to a base-10 short
-        /// </summary>
-        /// <param name="Value">The Base36 object</param>
-        /// <returns>The base-10 short</returns>
-        public static implicit operator short(Base36 Value)
-        {
-            try
-            {
-                return (short)Value._numericValue;
-            }
-            catch
-            {
-                throw new OverflowException("Overflow: Value too large to return as a short");
-            }
-        }
+        ///// <summary>
+        ///// Converts type Base36 to a base-10 integer
+        ///// </summary>
+        ///// <param name="Value">The Base36 object</param>
+        ///// <returns>The base-10 integer</returns>
+        //public static implicit operator int(Base36 Value)
+        //{
+        //    try
+        //    {
+        //        return (int)Value._numericValue;
+        //    }
+        //    catch
+        //    {
+        //        throw new OverflowException("Overflow: Value too large to return as an integer");
+        //    }
+        //}
 
 
-        /// <summary>
-        /// Converts a long (base-10) to a Base36 type
-        /// </summary>
-        /// <param name="Value">The long to convert</param>
-        /// <returns>The Base36 object</returns>
-        public static implicit operator Base36(long Value)
-        {
-            return new Base36(Value);
-        }
+        ///// <summary>
+        ///// Converts type Base36 to a base-10 short
+        ///// </summary>
+        ///// <param name="Value">The Base36 object</param>
+        ///// <returns>The base-10 short</returns>
+        //public static implicit operator short(Base36 Value)
+        //{
+        //    try
+        //    {
+        //        return (short)Value._numericValue;
+        //    }
+        //    catch
+        //    {
+        //        throw new OverflowException("Overflow: Value too large to return as a short");
+        //    }
+        //}
 
 
-        /// <summary>
-        /// Converts type Base36 to a string; must be explicit, since
-        /// Base36 > string is dangerous!
-        /// </summary>
-        /// <param name="Value">The Base36 type</param>
-        /// <returns>The string representation</returns>
-        public static explicit operator string(Base36 Value)
-        {
-            return Value.Value;
-        }
+        ///// <summary>
+        ///// Converts a long (base-10) to a Base36 type
+        ///// </summary>
+        ///// <param name="Value">The long to convert</param>
+        ///// <returns>The Base36 object</returns>
+        //public static implicit operator Base36(long Value)
+        //{
+        //    return new Base36(Value);
+        //}
 
 
-        /// <summary>
-        /// Converts a string to a Base36
-        /// </summary>
-        /// <param name="Value">The string (must be a Base36 string)</param>
-        /// <returns>A Base36 type</returns>
-        public static implicit operator Base36(string Value)
-        {
-            return new Base36(Value);
-        }
-
-        #endregion
-
-        #region Public Override Methods
-
-        /// <summary>
-        /// Returns a string representation of the Base36 number
-        /// </summary>
-        /// <returns>A string representation</returns>
-        public override string ToString()
-        {
-            return NumberToBase36(_numericValue);
-        }
+        ///// <summary>
+        ///// Converts type Base36 to a string; must be explicit, since
+        ///// Base36 > string is dangerous!
+        ///// </summary>
+        ///// <param name="Value">The Base36 type</param>
+        ///// <returns>The string representation</returns>
+        //public static explicit operator string(Base36 Value)
+        //{
+        //    return Value.Value;
+        //}
 
 
-        /// <summary>
-        /// A unique value representing the value of the number
-        /// </summary>
-        /// <returns>The unique number</returns>
-        public override int GetHashCode()
-        {
-            return _numericValue.GetHashCode();
-        }
+        ///// <summary>
+        ///// Converts a string to a Base36
+        ///// </summary>
+        ///// <param name="Value">The string (must be a Base36 string)</param>
+        ///// <returns>A Base36 type</returns>
+        //public static implicit operator Base36(string Value)
+        //{
+        //    return new Base36(Value);
+        //}
+
+        //#endregion
+
+        //#region Public Override Methods
+
+        ///// <summary>
+        ///// Returns a string representation of the Base36 number
+        ///// </summary>
+        ///// <returns>A string representation</returns>
+        //public override string ToString()
+        //{
+        //    return NumberToBase36(_numericValue);
+        //}
 
 
-        /// <summary>
-        /// Determines if an object has the same value as the instance
-        /// </summary>
-        /// <param name="obj">The object to compare</param>
-        /// <returns>True if the values are the same</returns>
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Base36))
-            {
-                return false;
-            }
-            else
-            {
-                return this == (Base36)obj;
-            }
-        }
+        ///// <summary>
+        ///// A unique value representing the value of the number
+        ///// </summary>
+        ///// <returns>The unique number</returns>
+        //public override int GetHashCode()
+        //{
+        //    return _numericValue.GetHashCode();
+        //}
 
-        #endregion
 
-        #region Public Methods
+        ///// <summary>
+        ///// Determines if an object has the same value as the instance
+        ///// </summary>
+        ///// <param name="obj">The object to compare</param>
+        ///// <returns>True if the values are the same</returns>
+        //public override bool Equals(object obj)
+        //{
+        //    if (!(obj is Base36))
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return this == (Base36)obj;
+        //    }
+        //}
 
-        /// <summary>
-        /// Returns a string representation padding the leading edge with
-        /// zeros if necessary to make up the number of characters
-        /// </summary>
-        /// <param name="minimumDigits">The minimum number of digits that the string must contain</param>
-        /// <returns>The padded string representation</returns>
-        public string ToString(int minimumDigits)
-        {
-            string base36Value = NumberToBase36(_numericValue);
+        //#endregion
 
-            if (base36Value.Length >= minimumDigits)
-            {
-                return base36Value;
-            }
-            else
-            {
-                var padding = new string('0', (minimumDigits - base36Value.Length));
-                return string.Format("{0}{1}", padding, base36Value);
-            }
-        }
+        //#region Public Methods
 
-        #endregion
+        ///// <summary>
+        ///// Returns a string representation padding the leading edge with
+        ///// zeros if necessary to make up the number of characters
+        ///// </summary>
+        ///// <param name="minimumDigits">The minimum number of digits that the string must contain</param>
+        ///// <returns>The padded string representation</returns>
+        //public string ToString(int minimumDigits)
+        //{
+        //    string base36Value = NumberToBase36(_numericValue);
+
+        //    if (base36Value.Length >= minimumDigits)
+        //    {
+        //        return base36Value;
+        //    }
+        //    else
+        //    {
+        //        var padding = new string('0', (minimumDigits - base36Value.Length));
+        //        return string.Format("{0}{1}", padding, base36Value);
+        //    }
+        //}
+
+        //#endregion
     }
 
     [DataContract]

@@ -72,7 +72,7 @@ namespace SrcFramework.Utils
 
             var tickInMiliseconds = Convert.ToInt64(span.TotalMilliseconds);
 
-            return Base36.NumberToBase36(tickInMiliseconds);
+            return Base36Converter.NumberToBase36(tickInMiliseconds);
         }
     }
 }
