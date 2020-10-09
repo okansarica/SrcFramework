@@ -1,79 +1,78 @@
 ﻿using System;
 using System.Security.Cryptography;
+using System.Text;
+
 
 namespace SrcFramework.Utils
 {
     public static class DataHelper
     {
-        //private static readonly char[] Punctuations = "!@#$%^&*()_-+=[{]};:>|./?".ToCharArray();
-        private static readonly char[] Punctuations = "!@#$%&*_-+=|/?".ToCharArray();
-
-        public static string GenerateRandomPassword(int length=8, int numberOfNonAlphanumericCharacters=3)
+        public static string GenerateRandomPassword(int length=8, int maxNumberOfNonAlphanumericCharacters=3)
         {
-            if (length < 1 || length > 128)
+            if (length < 1 || length > 30)
             {
                 throw new ArgumentException(nameof(length));
             }
 
-            if (numberOfNonAlphanumericCharacters > length || numberOfNonAlphanumericCharacters < 0)
+            if (maxNumberOfNonAlphanumericCharacters > length || maxNumberOfNonAlphanumericCharacters < 0)
             {
-                throw new ArgumentException(nameof(numberOfNonAlphanumericCharacters));
+                throw new ArgumentException(nameof(maxNumberOfNonAlphanumericCharacters));
             }
 
-            using (var rng = RandomNumberGenerator.Create())
+            string specialCharacters = "!$@%&?";
+            Random random = new Random();
+            int specialCharacterCount = 0;
+            var result = new StringBuilder();
+            for (int i = 0; i < length; i++)
             {
-                var byteBuffer = new byte[length];
-
-                rng.GetBytes(byteBuffer);
-
-                var count = 0;
-                var characterBuffer = new char[length];
-
-                for (var iter = 0; iter < length; iter++)
+                int decision = random.Next(4);
+                while (specialCharacterCount >= maxNumberOfNonAlphanumericCharacters && decision == 3)
                 {
-                    var i = byteBuffer[iter] % 87;
-
-                    if (i < 10)
-                    {
-                        characterBuffer[iter] = (char) ('0' + i);
-                    }
-                    else if (i < 36)
-                    {
-                        characterBuffer[iter] = (char) ('A' + i - 10);
-                    }
-                    else if (i < 62)
-                    {
-                        characterBuffer[iter] = (char) ('a' + i - 36);
-                    }
-                    else
-                    {
-                        characterBuffer[iter] = Punctuations[i - 62];
-                        count++;
-                    }
+                    decision = random.Next(4);
                 }
-
-                if (count >= numberOfNonAlphanumericCharacters)
+                if (decision == 0)
                 {
-                    return new string(characterBuffer);
+                    //numbers
+                    var number = random.Next(48, 58);
+                    result.Append(Convert.ToChar(number));
                 }
-
-                int j;
-                var rand = new Random();
-
-                for (j = 0; j < numberOfNonAlphanumericCharacters - count; j++)
+                else if (decision == 1)
                 {
-                    int k;
-                    do
-                    {
-                        k = rand.Next(0, length);
-                    }
-                    while (!char.IsLetterOrDigit(characterBuffer[k]));
-
-                    characterBuffer[k] = Punctuations[rand.Next(0, Punctuations.Length)];
+                    //uppercase
+                    var number = random.Next(65, 91);
+                    result.Append(Convert.ToChar(number));
                 }
-
-                return new string(characterBuffer);
+                else if (decision == 2)
+                {
+                    //lowercase
+                    var number = random.Next(97, 123);
+                    result.Append(Convert.ToChar(number));
+                }
+                else
+                {
+                    //special characters
+                    var number = random.Next(specialCharacters.Length);
+                    result.Append(specialCharacters[number]);
+                    specialCharacterCount++;
+                }
             }
+
+            return result.ToString();
+        }
+
+        public static string GenerateUniqueShortText(DateTime? startDate = null)
+        {
+            if (!startDate.HasValue)
+            {
+                startDate = new DateTime(2020, 1, 1, 0, 0, 0);
+            }
+
+
+            var span = DateTime.Now.Subtract(startDate.Value);
+
+            var tickInMiliseconds = Convert.ToInt64(span.TotalMilliseconds);
+
+            return Base36.NumberToBase36(tickInMiliseconds);
         }
     }
 }
