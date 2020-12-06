@@ -12,9 +12,11 @@ namespace SrcFramework.Core.Data.EntityFramework.Concrete
     public class RepositoryEntityFramework<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
     {
         private readonly DbSet<TEntity> _entities;
+        private readonly DbContext _contex;
 
         public RepositoryEntityFramework(DbContext context)
         {
+            _contex = context;
             _entities = context.Set<TEntity>();
         }
 
@@ -25,8 +27,8 @@ namespace SrcFramework.Core.Data.EntityFramework.Concrete
 
         public void Insert(TEntity entity)
         {
-            entity.LastModificationDate = DateTime.Now;
-            entity.CreatedDate = DateTime.Now;
+            entity.LastModificationDate = DateTime.UtcNow;
+            entity.CreatedDate = DateTime.UtcNow;
             
             _entities.Add(entity);
         }
@@ -41,7 +43,7 @@ namespace SrcFramework.Core.Data.EntityFramework.Concrete
 
         public void Update(TEntity entity)
         {
-            entity.LastModificationDate = DateTime.Now;
+            entity.LastModificationDate = DateTime.UtcNow;
             _entities.Update(entity);
         }
 
@@ -179,5 +181,10 @@ namespace SrcFramework.Core.Data.EntityFramework.Concrete
         }
 
         public IQueryable<TEntity> Queryable => _entities.AsNoTracking();
+
+        public Task<int> ExecuteSqlCommand(string command, object[] parameters)
+        {
+            return _contex.Database.ExecuteSqlRawAsync(command, parameters);
+        }
     }
 }

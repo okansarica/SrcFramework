@@ -27,5 +27,7 @@ namespace SrcFramework.Core.Data.EntityFramework.Abstract
         Task<List<T>> GetListAsync(Expression<Func<T, bool>> filter = null, params Expression<Func<T, object>>[] children);
         Task<List<T>> GetListAsync(List<int> idList, params Expression<Func<T, object>>[] children);
         IQueryable<T> Queryable { get; }
+
+        Task<int> ExecuteSqlCommand(string command, object[] parameters);
     }
 }

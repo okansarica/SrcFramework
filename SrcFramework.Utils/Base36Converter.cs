@@ -9,7 +9,7 @@ namespace SrcFramework.Utils
     /// Class representing a Base36 number
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Language", "CSE0003:Use expression-bodied members", Justification = "<Pending>")]
-    internal struct Base36Converter
+    public struct Base36Converter
     {
         #region Constants (and pseudo-constants)
 
